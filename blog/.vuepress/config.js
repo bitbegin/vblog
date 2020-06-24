@@ -4,6 +4,7 @@ module.exports = (options, context, api) => {
     title: 'bitbegin',
     description: 'bitbegin blog',
     theme: '@vuepress/theme-blog', // OR shortcut: @vuepress/blog
+    base: '/',
     themeConfig: {
       modifyBlogPluginOptions(blogPluginOptions) {
         return blogPluginOptions
