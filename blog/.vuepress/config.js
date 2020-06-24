@@ -37,5 +37,17 @@ module.exports = (options, context, api) => {
     alias: {
       "@assets": path.resolve(__dirname, "../image")
     },
+    plugins: {
+      '@vssue/vuepress-plugin-vssue': {
+        // set `platform` rather than `api`
+        platform: 'github',
+  
+        // all other options of Vssue are allowed
+        owner: 'bitbegin',
+        repo: 'vblog',
+        clientId: 'c2966ccb603490eb18b5',
+        clientSecret: '3eaa35e727fec188d8b8fe43af31b76aaee55962',
+      },
+    },
   }
 }

@@ -70,3 +70,5 @@ do bind [a + b] ctx
 ```
 
 有关`bind`用法的更为详细的解释看 [这里](http://www.pat665.free.fr/doc/bind.html)
+
+<Vssue :title="$title" />

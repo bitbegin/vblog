@@ -53,4 +53,4 @@ field size	| description	| data type	| comments
 ?	| pk_script	| uchar[]	| Usually contains the public key as a Bitcoin script setting up conditions to claim this output.
 ```
 
-
+<Vssue :title="$title" />

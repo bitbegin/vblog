@@ -16,5 +16,9 @@
   "devDependencies": {
     "vuepress": "^1.5.2",
     "@vuepress/theme-blog": "^2.2.0"
+  },
+  "dependencies": {
+    "@vssue/api-github-v3": "^1.4.4",
+    "@vssue/vuepress-plugin-vssue": "^1.4.6"
   }
 }
