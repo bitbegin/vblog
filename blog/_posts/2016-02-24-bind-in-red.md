@@ -11,7 +11,7 @@ title: Red的bind操作
 
 ## Red的bind函数
 
-![](@assets/2016-02-24-bind-in-red/bind.gif)
+![](/2016-02-24-bind-in-red/bind.gif)
 
 
 `Red`中的`bind`函数是个比较有意思的东西，刚接触时一直没有看懂这是个什么玩意，不信你看：

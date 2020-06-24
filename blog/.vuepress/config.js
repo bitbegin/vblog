@@ -1,4 +1,3 @@
-const path = require("path");
 module.exports = (options, context, api) => {
   return {
     title: 'bitbegin',
@@ -34,9 +33,6 @@ module.exports = (options, context, api) => {
         ],
       },
       lengthPerPage: 8,
-    },
-    alias: {
-      "@assets": path.resolve(__dirname, "../image")
     },
     plugins: {
       '@vssue/vuepress-plugin-vssue': {
