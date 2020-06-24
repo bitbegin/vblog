@@ -15,4 +15,4 @@ jobs:
         TARGET_BRANCH: gh_pages
         BUILD_SCRIPT: npm install && npm run build
         BUILD_DIR: blog/.vuepress/dist/
-        CNAME: https://www.bitbegin.com
+        CNAME: www.bitbegin.com
