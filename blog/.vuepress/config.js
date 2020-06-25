@@ -33,6 +33,7 @@ module.exports = (options, context, api) => {
         ],
       },
       lengthPerPage: 8,
+      smoothScroll: true,
     },
     plugins: {
       '@vssue/vuepress-plugin-vssue': {
@@ -44,6 +45,10 @@ module.exports = (options, context, api) => {
         repo: 'vblog',
         clientId: 'c2966ccb603490eb18b5',
         clientSecret: '3eaa35e727fec188d8b8fe43af31b76aaee55962',
+      },
+      '@vuepress/google-analytics':
+      {
+        'ga': 'UA-170780764-1'
       },
     },
   }
