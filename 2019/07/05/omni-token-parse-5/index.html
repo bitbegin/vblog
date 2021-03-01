@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>比特币交易数据解析系列（5）- OMNI协议分析 | bitbegin</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="配置bitcoin.conf
+`
+txindex=1
+rpcport=54352
+rpcuser=xxx
+rpcpassword=xxx
+testnet=1
+addnode=104.237.131.138
+addnode=151.80.205.132
+addnode=192.155.82.123
+addnode=74.220.255.190
+addno ...">
+    <link rel="preload" href="/assets/css/0.styles.4a2c4c83.css" as="style"><link rel="preload" href="/assets/js/app.03ba1933.js" as="script"><link rel="preload" href="/assets/js/6.3d99347f.js" as="script"><link rel="preload" href="/assets/js/3.ce72ccac.js" as="script"><link rel="preload" href="/assets/js/26.55ca817f.js" as="script"><link rel="prefetch" href="/assets/js/10.592fc377.js"><link rel="prefetch" href="/assets/js/11.af3ac8f7.js"><link rel="prefetch" href="/assets/js/12.bb973480.js"><link rel="prefetch" href="/assets/js/13.7546dc34.js"><link rel="prefetch" href="/assets/js/14.a68b3685.js"><link rel="prefetch" href="/assets/js/15.8f091a1a.js"><link rel="prefetch" href="/assets/js/16.01e12a5e.js"><link rel="prefetch" href="/assets/js/17.8aea1dbb.js"><link rel="prefetch" href="/assets/js/18.f13808ea.js"><link rel="prefetch" href="/assets/js/19.83cec9dc.js"><link rel="prefetch" href="/assets/js/20.4be4206e.js"><link rel="prefetch" href="/assets/js/21.353fd217.js"><link rel="prefetch" href="/assets/js/22.3891a6bf.js"><link rel="prefetch" href="/assets/js/23.976f2e6f.js"><link rel="prefetch" href="/assets/js/24.9f28c4be.js"><link rel="prefetch" href="/assets/js/25.7fe82aa4.js"><link rel="prefetch" href="/assets/js/4.270470b4.js"><link rel="prefetch" href="/assets/js/5.9c421807.js"><link rel="prefetch" href="/assets/js/7.9e8f0730.js"><link rel="prefetch" href="/assets/js/8.f0e62c2e.js"><link rel="prefetch" href="/assets/js/9.909689e6.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.07038160.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4a2c4c83.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" class="nav-link home-link">bitbegin </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/" class="nav-link mobile-home-link">bitbegin </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        比特币交易数据解析系列（5）- OMNI协议分析
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">bitbegin</span> <span itemprop="address">   in wuhan</span></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2019-07-05T10:15:00.000Z">
+      Fri Jul 05 2019
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-d832e844><a href="/tag/BTC" data-v-d832e844> BTC </a></li><li class="post-tag" data-v-d832e844><a href="/tag/bitcoin" data-v-d832e844> bitcoin </a></li><li class="post-tag" data-v-d832e844><a href="/tag/omni" data-v-d832e844> omni </a></li><li class="post-tag" data-v-d832e844><a href="/tag/mastercoin" data-v-d832e844> mastercoin </a></li><li class="post-tag" data-v-d832e844><a href="/tag/transaction" data-v-d832e844> transaction </a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h2 id="安装core"><a href="#安装core" class="header-anchor">#</a> 安装core</h2> <h3 id="配置bitcoin-conf"><a href="#配置bitcoin-conf" class="header-anchor">#</a> 配置bitcoin.conf</h3> <div class="language- extra-class"><pre class="language-text"><code>txindex=1
+rpcport=54352
+rpcuser=xxx
+rpcpassword=xxx
+testnet=1
+addnode=104.237.131.138
+addnode=151.80.205.132
+addnode=192.155.82.123
+addnode=74.220.255.190
+addnode=80.100.203.151
+#dbcache=4096
+#listen=0
+banscore=10
+#par=-1
+
+</code></pre></div><h3 id="打开server"><a href="#打开server" class="header-anchor">#</a> 打开server</h3> <p><code>omnicored -conf=d:/omni/bitcoin.conf -datadir=d:/omni -testnet</code></p> <h2 id="测试环境"><a href="#测试环境" class="header-anchor">#</a> 测试环境</h2> <h3 id="创建测试地址"><a href="#创建测试地址" class="header-anchor">#</a> 创建测试地址</h3> <div class="language- extra-class"><pre class="language-text"><code>PS C:\Users\bitbegin&gt; omnicore-cli -testnet &quot;getnewaddress&quot; mytest
+n4d8tkDrhF7PcDTPSuUckT927GHonewV7T
+PS C:\Users\bitbegin&gt; omnicore-cli &quot;getaddressesbyaccount&quot; &quot;mytest&quot;
+[
+  &quot;n4d8tkDrhF7PcDTPSuUckT927GHonewV7T&quot;
+]
+</code></pre></div><h3 id="给该地址发送测试coin"><a href="#给该地址发送测试coin" class="header-anchor">#</a> 给该地址发送测试coin</h3> <p>查看交易tx：</p> <div class="language- extra-class"><pre class="language-text"><code>omnicore-cli -testnet &quot;gettransaction&quot; &quot;649186a7571c326315ab236eddcacb99c33764248abf0367b4c5416d3df2da52&quot;
+</code></pre></div><p>查看余额：</p> <div class="language- extra-class"><pre class="language-text"><code>omnicore-cli -testnet getbalance &quot;mytest&quot;
+</code></pre></div><h3 id="获取omni测试coin"><a href="#获取omni测试coin" class="header-anchor">#</a> 获取omni测试coin</h3> <div class="language- extra-class"><pre class="language-text"><code>omnicore-cli -testnet sendtoaddress &quot;moneyqMan7uh8FqdCA2BV5yZ8qVrc9ikLP&quot; 0.1
+</code></pre></div><h3 id="查询omni测试coin"><a href="#查询omni测试coin" class="header-anchor">#</a> 查询omni测试coin</h3> <div class="language- extra-class"><pre class="language-text"><code>omnicore-cli -testnet &quot;omni_getbalance&quot; &quot;n4d8tkDrhF7PcDTPSuUckT927GHonewV7T&quot; 2
+</code></pre></div><h2 id="发送omni"><a href="#发送omni" class="header-anchor">#</a> 发送omni</h2> <p>raw方式send</p> <h3 id="生成rawtx"><a href="#生成rawtx" class="header-anchor">#</a> 生成rawtx</h3> <p>利用</p> <div class="language- extra-class"><pre class="language-text"><code>http://builder.bitwatch.co/?version=0&amp;type=0&amp;currency_identifier=1&amp;number_of_coins=100000000&amp;sender=mvayzbj425X55kRLLPQiuCXWUED6LMP65C&amp;reference=n4EmA9R4VmxLnxu9G8yZMDxvBBha8bUtEQ
+</code></pre></div><p>生成</p> <div class="language- extra-class"><pre class="language-text"><code>omnicore-cli omni_sendrawtx &quot;n4d8tkDrhF7PcDTPSuUckT927GHonewV7T&quot; &quot;00000000000000020000000000000001&quot; &quot;n495sTgesEv2qBgvDSmX3Gw3ZTo46o6WYS&quot;
+</code></pre></div><p>执行后得到：</p> <div class="language- extra-class"><pre class="language-text"><code>1058a88559322fcf407b6b637ced13d2614a433007494d92c61d497bfc7e12b1
+</code></pre></div><p>查看tx信息：</p> <div class="language- extra-class"><pre class="language-text"><code>PS C:\Users\bitbegin&gt; omnicore-cli -testnet &quot;omni_gettransaction&quot; &quot;1058a88559322fcf407b6b637ced13d2614a433007494d92c61d497bfc7e12b1&quot;
+{
+  &quot;txid&quot;: &quot;1058a88559322fcf407b6b637ced13d2614a433007494d92c61d497bfc7e12b1&quot;,
+  &quot;fee&quot;: &quot;0.00000256&quot;,
+  &quot;sendingaddress&quot;: &quot;n4d8tkDrhF7PcDTPSuUckT927GHonewV7T&quot;,
+  &quot;referenceaddress&quot;: &quot;n495sTgesEv2qBgvDSmX3Gw3ZTo46o6WYS&quot;,
+  &quot;ismine&quot;: true,
+  &quot;version&quot;: 0,
+  &quot;type_int&quot;: 0,
+  &quot;type&quot;: &quot;Simple Send&quot;,
+  &quot;propertyid&quot;: 2,
+  &quot;divisible&quot;: true,
+  &quot;amount&quot;: &quot;0.00000001&quot;,
+  &quot;valid&quot;: true,
+  &quot;blockhash&quot;: &quot;0000000000000266d4fe956c655e82c1ae0746e9a3f7c5030f0f03868ab35767&quot;,
+  &quot;blocktime&quot;: 1562291469,
+  &quot;positioninblock&quot;: 128,
+  &quot;block&quot;: 1567520,
+  &quot;confirmations&quot;: 2
+}
+</code></pre></div><h3 id="利用-omni-send"><a href="#利用-omni-send" class="header-anchor">#</a> 利用 omni_send</h3> <div class="language- extra-class"><pre class="language-text"><code>omnicore-cli &quot;omni_send&quot; &quot;n4d8tkDrhF7PcDTPSuUckT927GHonewV7T&quot; &quot;mtdQb3vMzKm1cBefyNSF8dsGNu4r6gig9Z&quot; 2 &quot;1&quot;
+</code></pre></div><p>执行后得到：</p> <div class="language- extra-class"><pre class="language-text"><code>ccc066f9c85e93ad90ad5c9545d68fdfc47cb2544b07f93363ff494c8abbec81
+</code></pre></div><h2 id="omni输出脚本"><a href="#omni输出脚本" class="header-anchor">#</a> omni输出脚本</h2> <h3 id="数据结构"><a href="#数据结构" class="header-anchor">#</a> 数据结构</h3> <div class="language-table extra-class"><pre class="language-text"><code>字节数 | 数据 | 描述 
+4 | 6f6d6e69 | omni 
+2 | 0000 | 版本： 0 
+2 | 0000 | 0 =&gt; 交易类型：Simple Send 
+4 | 0000001f | 31 =&gt; 货币：USDT 
+8 | 000000018a3052b0 | 66.1339 =&gt; 转账金额 
+</code></pre></div><h3 id="数据解析"><a href="#数据解析" class="header-anchor">#</a> 数据解析</h3> <p>原始数据</p> <div class="language- extra-class"><pre class="language-text"><code>6a146f6d6e6900000000000000020000000000000001
+</code></pre></div><p>解析：</p> <div class="language- extra-class"><pre class="language-text"><code>6a          ; OP_RETURN 
+14          ; length
+6f6d6e69    ; string &quot;omni&quot;
+0000        ; version
+0000        ; Simple Send 
+00000002  ; omni test
+0000000000000001  ; value
+</code></pre></div><!----></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#安装core" title="安装core">安装core</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#配置bitcoin-conf" title="配置bitcoin.conf">配置bitcoin.conf</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#打开server" title="打开server">打开server</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#测试环境" title="测试环境">测试环境</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#创建测试地址" title="创建测试地址">创建测试地址</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#给该地址发送测试coin" title="给该地址发送测试coin">给该地址发送测试coin</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#获取omni测试coin" title="获取omni测试coin">获取omni测试coin</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#查询omni测试coin" title="查询omni测试coin">查询omni测试coin</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#发送omni" title="发送omni">发送omni</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#生成rawtx" title="生成rawtx">生成rawtx</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#利用-omni-send" title="利用 omni_send">利用 omni_send</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#omni输出脚本" title="omni输出脚本">omni输出脚本</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#数据结构" title="数据结构">数据结构</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#数据解析" title="数据解析">数据解析</a></div></div></div></div> <footer class="footer" data-v-fdbf4940><div class="footer-left-wrap" data-v-fdbf4940><ul class="contact" data-v-fdbf4940><li class="contact-item" data-v-fdbf4940><a href="https://github.com/bitbegin" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-fdbf4940><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github" data-v-fdbf4940><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-v-fdbf4940></path></svg>
+          
+        </a></li></ul></div> <div class="footer-right-wrap" data-v-fdbf4940><ul class="copyright" data-v-fdbf4940><li class="copyright-item" data-v-fdbf4940><a href="/2019/07/05/omni-token-parse-5/.html" class="nav-link" data-v-fdbf4940>MIT</a></li></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.03ba1933.js" defer></script><script src="/assets/js/6.3d99347f.js" defer></script><script src="/assets/js/3.ce72ccac.js" defer></script><script src="/assets/js/26.55ca817f.js" defer></script>
+  </body>
+</html>
