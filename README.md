@@ -5,8 +5,8 @@
 ## Development
 
 ```bash
-npm run dev
-npm run build
+yarn dev
+yarn build
 ```
 
 For more details, please head VuePress's [documentation](https://v1.vuepress.vuejs.org/).
