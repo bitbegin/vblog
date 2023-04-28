@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Red 0.5.1 Released | bitbegin</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="
+经过漫长的等待，Red终于完成了0.5.1的发布。新版的Red主要带来了新的命令行终端和错误支持，以及bug修复和其他改进。
+新的命令行终端
+提升Unix平台兼容性
+更好的命令补全特性
+更好的跨平台特性
+内建命令历史
+可定制` ...">
+    
+    <link rel="preload" href="/assets/css/0.styles.c02f74ab.css" as="style"><link rel="preload" href="/assets/js/app.6d905af9.js" as="script"><link rel="preload" href="/assets/js/6.d9aefc5c.js" as="script"><link rel="preload" href="/assets/js/3.f75f8ea8.js" as="script"><link rel="preload" href="/assets/js/19.11035ba7.js" as="script"><link rel="prefetch" href="/assets/js/10.c49783db.js"><link rel="prefetch" href="/assets/js/11.27f8fb72.js"><link rel="prefetch" href="/assets/js/12.5ccc3682.js"><link rel="prefetch" href="/assets/js/13.13772e37.js"><link rel="prefetch" href="/assets/js/14.d5fdf6c6.js"><link rel="prefetch" href="/assets/js/15.64f91135.js"><link rel="prefetch" href="/assets/js/16.aeeb3645.js"><link rel="prefetch" href="/assets/js/17.be4c4988.js"><link rel="prefetch" href="/assets/js/18.36c5f43c.js"><link rel="prefetch" href="/assets/js/20.e97103cd.js"><link rel="prefetch" href="/assets/js/21.525d2128.js"><link rel="prefetch" href="/assets/js/22.52bff9d8.js"><link rel="prefetch" href="/assets/js/23.6bc79277.js"><link rel="prefetch" href="/assets/js/24.b88a4f5d.js"><link rel="prefetch" href="/assets/js/25.efe05808.js"><link rel="prefetch" href="/assets/js/26.19480b5f.js"><link rel="prefetch" href="/assets/js/4.079edda5.js"><link rel="prefetch" href="/assets/js/5.680c2dc1.js"><link rel="prefetch" href="/assets/js/7.c3bc74f6.js"><link rel="prefetch" href="/assets/js/8.42adc483.js"><link rel="prefetch" href="/assets/js/9.9c0f34d3.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.1cfd2050.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c02f74ab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" class="nav-link home-link">bitbegin </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/" class="nav-link mobile-home-link">bitbegin </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        Red 0.5.1 Released
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">bitbegin</span> <span itemprop="address">   in wuhan</span></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2015-03-18 21:48">
+      Wed Mar 18 2015
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/tag/Red" data-v-42ccfcd5><span data-v-42ccfcd5>Red</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/Red/System" data-v-42ccfcd5><span data-v-42ccfcd5>Red/System</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h2 id="red-0-5-1-新的命令行终端和错误支持"><a href="#red-0-5-1-新的命令行终端和错误支持" class="header-anchor">#</a> Red 0.5.1 --新的命令行终端和错误支持</h2> <p>经过漫长的等待，<code>Red</code>终于完成了<code>0.5.1</code>的发布。新版的<code>Red</code>主要带来了新的命令行终端和错误支持，以及bug修复和其他改进。</p> <p><img src="/2015-03-18-red-051-released/respect.jpg" alt=""></p> <h3 id="新的命令行终端"><a href="#新的命令行终端" class="header-anchor">#</a> 新的命令行终端</h3> <ul><li>提升<code>Unix</code>平台兼容性</li> <li>更好的命令补全特性</li> <li>更好的跨平台特性</li> <li>内建命令历史</li> <li>可定制<code>prompt</code></li> <li>支持<code>ESC</code>中断</li> <li>...</li></ul> <h3 id="错误支持"><a href="#错误支持" class="header-anchor">#</a> 错误支持</h3> <p><code>Red</code>现在把<code>errors</code>当做一等公民来处理，专门定义了<code>error!</code>数据类型。
+官方的例子：</p> <div class="language- extra-class"><pre><code>a: 0 if error? err: try [1 / a][print &quot;divide by zero&quot;]
+</code></pre></div><h3 id="排序函数"><a href="#排序函数" class="header-anchor">#</a> 排序函数</h3> <p>学过<code>C</code>的都知道，在考试中经常会出现各种排序算法，经常会把他们搞混淆。
+<code>Red</code>目前实现了同<code>Rebol</code>相同的<code>sort</code>函数。</p> <p>例子1：</p> <div class="language- extra-class"><pre><code>scores: [2 3 1 9 4 8]
+sort scores
+== [1 2 3 4 8 9]
+</code></pre></div><p>例子2：</p> <div class="language- extra-class"><pre><code>str: &quot;CgBbefacdA&quot;
+sort copy str
+== &quot;aABbCcdefg&quot;
+sort/case copy str
+== &quot;ABCabcdefg&quot;
+str
+== &quot;CgBbefacdA&quot;
+</code></pre></div><p>太复杂的例子我也看不懂了，就不列了。</p> <h3 id="新的数据类型和运行时类型检测支持"><a href="#新的数据类型和运行时类型检测支持" class="header-anchor">#</a> 新的数据类型和运行时类型检测支持</h3> <p><code>Red</code>新增了几种数据类型，完整实现了<code>typeset!</code>数据类型。</p> <h3 id="red-system的改进"><a href="#red-system的改进" class="header-anchor">#</a> <code>Red/System</code>的改进</h3> <p>通过使用<code>catch</code>语句允许捕获过滤后的异常。</p> <div class="language- extra-class"><pre><code>Red/System []
+
+catch 100 [
+    print &quot;hello&quot;
+    throw 10
+    print &quot;&lt;hidden&gt;&quot;
+]
+print &quot; world&quot;
+</code></pre></div><p>将输出：</p> <div class="language- extra-class"><pre><code>hello world
+</code></pre></div><p>另外<code>Red/System</code>新增了两个预处理指令：<code>#get &lt;path&gt;</code>和<code>#in &lt;path&gt; &lt;word&gt;</code>。</p> <h2 id="red-0-5-2预告"><a href="#red-0-5-2预告" class="header-anchor">#</a> Red 0.5.2预告</h2> <p><code>0.5.2</code>将改进程序运行速度和代码大小，而且这个版本不会花费太长的时间。</p> <!----></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#red-0-5-1-新的命令行终端和错误支持" title="Red 0.5.1 --新的命令行终端和错误支持">Red 0.5.1 --新的命令行终端和错误支持</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#新的命令行终端" title="新的命令行终端">新的命令行终端</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#错误支持" title="错误支持">错误支持</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#排序函数" title="排序函数">排序函数</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#新的数据类型和运行时类型检测支持" title="新的数据类型和运行时类型检测支持">新的数据类型和运行时类型检测支持</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#red-system的改进" title="Red/System的改进">Red/System的改进</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#red-0-5-2预告" title="Red 0.5.2预告">Red 0.5.2预告</a></div></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8><li class="contact-item" data-v-3d9deeb8><a href="https://github.com/bitbegin" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github" data-v-3d9deeb8><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-v-3d9deeb8></path></svg>
+          
+        </a></li></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8><li class="copyright-item" data-v-3d9deeb8>MIT</li></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6d905af9.js" defer></script><script src="/assets/js/6.d9aefc5c.js" defer></script><script src="/assets/js/3.f75f8ea8.js" defer></script><script src="/assets/js/19.11035ba7.js" defer></script>
+  </body>
+</html>

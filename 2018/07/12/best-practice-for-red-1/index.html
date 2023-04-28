@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用Red的最佳实践系列（1）- 错误的处理 | bitbegin</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="Red提供的错误处理机制属于异常。
+Red的异常概念
+在Red中引入了error!类型来表示一个异常，如果直接执行一个error!，且没有捕获，会导致程序退出。
+抛出异常
+make error!
+cause-error
+这在下面的Red异常的用法章节有介绍
+捕获异常
+可以使用 try或者 attempt ...">
+    
+    <link rel="preload" href="/assets/css/0.styles.c02f74ab.css" as="style"><link rel="preload" href="/assets/js/app.6d905af9.js" as="script"><link rel="preload" href="/assets/js/6.d9aefc5c.js" as="script"><link rel="preload" href="/assets/js/3.f75f8ea8.js" as="script"><link rel="preload" href="/assets/js/21.525d2128.js" as="script"><link rel="prefetch" href="/assets/js/10.c49783db.js"><link rel="prefetch" href="/assets/js/11.27f8fb72.js"><link rel="prefetch" href="/assets/js/12.5ccc3682.js"><link rel="prefetch" href="/assets/js/13.13772e37.js"><link rel="prefetch" href="/assets/js/14.d5fdf6c6.js"><link rel="prefetch" href="/assets/js/15.64f91135.js"><link rel="prefetch" href="/assets/js/16.aeeb3645.js"><link rel="prefetch" href="/assets/js/17.be4c4988.js"><link rel="prefetch" href="/assets/js/18.36c5f43c.js"><link rel="prefetch" href="/assets/js/19.11035ba7.js"><link rel="prefetch" href="/assets/js/20.e97103cd.js"><link rel="prefetch" href="/assets/js/22.52bff9d8.js"><link rel="prefetch" href="/assets/js/23.6bc79277.js"><link rel="prefetch" href="/assets/js/24.b88a4f5d.js"><link rel="prefetch" href="/assets/js/25.efe05808.js"><link rel="prefetch" href="/assets/js/26.19480b5f.js"><link rel="prefetch" href="/assets/js/4.079edda5.js"><link rel="prefetch" href="/assets/js/5.680c2dc1.js"><link rel="prefetch" href="/assets/js/7.c3bc74f6.js"><link rel="prefetch" href="/assets/js/8.42adc483.js"><link rel="prefetch" href="/assets/js/9.9c0f34d3.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.1cfd2050.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c02f74ab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" class="nav-link home-link">bitbegin </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/" class="nav-link mobile-home-link">bitbegin </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        使用Red的最佳实践系列（1）- 错误的处理
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">bitbegin</span> <span itemprop="address">   in wuhan</span></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2018-07-12T14:48:36.000Z">
+      Thu Jul 12 2018
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/tag/Red" data-v-42ccfcd5><span data-v-42ccfcd5>Red</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/Red/System" data-v-42ccfcd5><span data-v-42ccfcd5>Red/System</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/Rebol" data-v-42ccfcd5><span data-v-42ccfcd5>Rebol</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><p><code>Red</code>提供的错误处理机制属于异常。</p> <h1 id="red的异常概念"><a href="#red的异常概念" class="header-anchor">#</a> Red的异常概念</h1> <p>在<code>Red</code>中引入了<code>error!</code>类型来表示一个异常，如果直接执行一个<code>error!</code>，且没有捕获，会导致程序退出。</p> <h2 id="抛出异常"><a href="#抛出异常" class="header-anchor">#</a> 抛出异常</h2> <ol><li><code>make error!</code></li> <li><code>cause-error</code>
+这在下面的<code>Red异常的用法</code>章节有介绍</li></ol> <h2 id="捕获异常"><a href="#捕获异常" class="header-anchor">#</a> 捕获异常</h2> <p>可以使用 <code>try</code>或者 <code>attempt</code>， <code>try</code>一个异常时返回的是一个<code>error!</code>类型，而<code>attempt</code>返回的是<code>none</code>。</p> <h1 id="red的异常类型"><a href="#red的异常类型" class="header-anchor">#</a> Red的异常类型</h1> <p><code>Red</code>的异常有以下几种：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; help system/catalog/errors
+SYSTEM/CATALOG/ERRORS is an object! with the following words and values:
+     throw     object!       [code type break return throw continue while-cond]
+     note      object!       [code type no-load]
+     syntax    object!       [code type invalid missing no-header no-rs-header bad-header malconstruct bad-...
+     script    object!       [code type no-value need-value not-defined not-in-context no-arg expect-arg ex...
+     math      object!       [code type zero-divide overflow positive]
+     access    object!       [code type cannot-open invalid-utf8 no-connect]
+     user      object!       [code type message]
+     internal  object!       [code type bad-path not-here no-memory wrong-mem stack-overflow too-deep featu...
+
+</code></pre></div><p>比如 <code>1 / 0</code>除零异常：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; probe try [1 / 0]
+make error! [
+    code: 400
+    type: 'math
+    id: 'zero-divide
+    arg1: none
+    arg2: none
+    arg3: none
+    near: none
+    where: '/
+    stack: 41781600
+]
+*** Math Error: attempt to divide by zero
+*** Where: /
+*** Stack: probe  
+
+</code></pre></div><p>它的<code>type</code>为<code>math</code>，<code>id</code>为<code>zero-divide</code>。</p> <p>再举一个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; probe try [do]
+make error! [
+    code: 304
+    type: 'script
+    id: 'no-arg
+    arg1: 'do
+    arg2: 'value
+    arg3: none
+    near: none
+    where: 'do
+    stack: 41781600
+]
+*** Script Error: do is missing its value argument
+*** Where: do
+*** Stack: probe  
+
+&gt;&gt; 
+</code></pre></div><p>我们知道系统函数<code>do</code>提供了把数据作为代码执行的功能，它需要一个参数，如果程序没有提供参数，就会抛出这样的异常。它的<code>type</code>为<code>script</code>，<code>id</code>为<code>no-arg</code>。</p> <p>而且我们从这些名称可以大致看出错误的原因。</p> <h1 id="red异常的用法"><a href="#red异常的用法" class="header-anchor">#</a> Red异常的用法</h1> <p><code>type</code>为<code>user</code>，<code>id</code>为<code>message</code>的错误是Red提供的默认用户异常，它可以通过<code>make error!</code>创建。</p> <h2 id="通过make-error-创建异常"><a href="#通过make-error-创建异常" class="header-anchor">#</a> 通过<code>make error!</code>创建异常</h2> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; probe try [make error! &quot;hello&quot;]
+make error! [
+    code: 600
+    type: 'user
+    id: 'message
+    arg1: &quot;hello&quot;
+    arg2: none
+    arg3: none
+    near: none
+    where: none
+    stack: none
+]
+*** User Error: &quot;hello&quot;
+*** Where: ??? 
+
+</code></pre></div><p>另外 <code>make error!</code>可以创建特定类型的异常：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; probe try [make error! 400]
+make error! [
+    code: 400
+    type: 'math
+    id: 'zero-divide
+    arg1: none
+    arg2: none
+    arg3: none
+    near: none
+    where: none
+    stack: none
+]
+*** Math Error: attempt to divide by zero
+*** Where: ??? 
+
+</code></pre></div><p>或者：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; probe try [make error! [math zero-divide]]
+make error! [
+    code: 400
+    type: 'math
+    id: 'zero-divide
+    arg1: none
+    arg2: none
+    arg3: none
+    near: none
+    where: none
+    stack: none
+]
+*** Math Error: attempt to divide by zero
+*** Where: ??? 
+
+</code></pre></div><p>但是，这两种方式创建的异常都不能带有参数。</p> <h2 id="使用cause-error创建异常"><a href="#使用cause-error创建异常" class="header-anchor">#</a> 使用<code>cause-error</code>创建异常</h2> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; ? cause-error
+USAGE:
+     CAUSE-ERROR err-type err-id args
+
+DESCRIPTION: 
+     Causes an immediate error throw, with the provided information. 
+     CAUSE-ERROR is a function! value.
+
+ARGUMENTS:
+     err-type     [word!] 
+     err-id       [word!] 
+     args         [block!] 
+</code></pre></div><p>例如：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; probe try [cause-error 'math 'zero-divide []]
+make error! [
+    code: 400
+    type: 'math
+    id: 'zero-divide
+    arg1: none
+    arg2: none
+    arg3: none
+    near: none
+    where: 'do
+    stack: 41459176
+]
+*** Math Error: attempt to divide by zero
+*** Where: do
+*** Stack: probe  
+</code></pre></div><p><code>cause-error</code>创建异常的功能更加强大，而且可以带参数。</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; probe try [cause-error 'user 'message [&quot;hello&quot; &quot;world&quot;]]
+make error! [
+    code: 600
+    type: 'user
+    id: 'message
+    arg1: &quot;hello&quot;
+    arg2: &quot;world&quot;
+    arg3: none
+    near: none
+    where: 'do
+    stack: 41781640
+]
+*** User Error: &quot;hello&quot;
+*** Where: do
+*** Stack: probe  
+
+</code></pre></div><h1 id="自定义用户异常"><a href="#自定义用户异常" class="header-anchor">#</a> 自定义用户异常</h1> <p>上面例子中的异常都是Red语言提供的异常，有的时候我们需要自定义异常，以区别其他异常。我们可以这样定义一个异常：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; probe system/catalog/errors/user: make system/catalog/errors/user [my-error: [&quot;info [&quot; :arg1 &quot;: (&quot; :arg2 &quot; &quot; :arg3 &quot;)]&quot;]]
+make object! [
+    code: 800
+    type: &quot;User Error&quot;
+    message: [:arg1]
+    my-error: [&quot;info [&quot; :arg1 &quot;: (&quot; :arg2 &quot; &quot; :arg3 &quot;)]&quot;]
+]
+== make object! [
+    code: 800
+    type: &quot;User Error&quot;
+    message: [:arg1]
+    my-error: [&quot;info [&quot; :ar...
+&gt;&gt; 
+</code></pre></div><p>然后可以使用<code>cause-error</code>使用该异常类型创建异常：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; new-error: func [name [word!] arg2 arg3][
+[    	cause-error 'user 'my-error [name arg2 arg3]
+[    ]
+== func [name [word!] arg2 arg3][cause-error 'user 'my-error [name arg2 arg3]]
+&gt;&gt; probe try [new-error 'func-name &quot;msg1&quot; &quot;msg2&quot;]
+make error! [
+    code: 601
+    type: 'user
+    id: 'my-error
+    arg1: 'func-name
+    arg2: &quot;msg1&quot;
+    arg3: &quot;msg2&quot;
+    near: none
+    where: 'do
+    stack: 41781680
+]
+*** User Error: info [ func-name : ( &quot;msg1&quot;   &quot;msg2&quot; )]
+*** Where: do
+*** Stack: probe  
+
+</code></pre></div><h1 id="red的catch-throw功能"><a href="#red的catch-throw功能" class="header-anchor">#</a> Red的<code>catch/throw</code>功能</h1> <p><code>Red</code>提供了<code>catch/throw</code>语句来完成<code>block</code>块的提前返回。</p> <div class="language- extra-class"><pre class="language-text"><code>write %file.txt &quot;i am a happy little file with no real purpose&quot;
+print catch [
+    if exists? %file.txt [throw &quot;Doc found&quot;]
+    &quot;Doc not found&quot;
+]
+Doc found
+</code></pre></div><p><code>catch/throw</code>语句是成对出现的，如果程序中使用了<code>throw</code>而没有用<code>catch</code>捕获，会导致异常：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;&gt; probe try [throw &quot;error&quot;]
+*** Throw Error: no catch for throw: &quot;error&quot;
+*** Where: throw
+*** Stack:  
+</code></pre></div><h1 id="red异常系统的问题"><a href="#red异常系统的问题" class="header-anchor">#</a> Red异常系统的问题</h1> <h2 id="make-error-还不能带参数-arg1-arg2-arg3"><a href="#make-error-还不能带参数-arg1-arg2-arg3" class="header-anchor">#</a> make error!还不能带参数(arg1/arg2/arg3)</h2> <div class="language- extra-class"><pre class="language-text"><code>make error! [user message [&quot;msg1&quot; &quot;msg2]]
+</code></pre></div><p>但是可以使用<code>cause-error</code>替代</p> <h2 id="不能捕获特定的异常"><a href="#不能捕获特定的异常" class="header-anchor">#</a> 不能捕获特定的异常</h2> <p>或许我们可以增加如下语法：</p> <div class="language- extra-class"><pre class="language-text"><code>probe try/with [cause-error 'user 'message][
+    ['user 'message] [probe self]
+    ['script 'no-arg] [probe self]]
+</code></pre></div><p>如果两种异常都没有捕获，异常继续向上层<code>throw</code>。
+当然我们可以捕获后再往上层<code>throw</code>，但是这样不方便使用。如果系统提供捕获特定异常的方式，将能够简化部分异常处理。
+我们可以利用<code>bind</code>，实现该功能：</p> <div class="language- extra-class"><pre class="language-text"><code>try-catch: func [blk [block!] cond [block!] todo [block!] /local error][
+	unless error? error: try blk [return error]
+	if do bind cond 'error [return do bind todo 'error]
+	error
+]
+
+suc: &quot;your todo&quot;
+
+;-- test case 1
+command: [1 / 0]
+cond: [error/code = 400]
+todo: [print [&quot;catch&quot; lf error] suc]
+a: try-catch command cond todo
+print a = suc
+
+;-- test case 2
+command: [1 / 0]
+cond: [error/code = 300]
+todo: [print [&quot;catch&quot; lf error] 1]
+a: try-catch command cond todo
+print error? a
+
+;-- test case 3
+command: [1 / 1]
+cond: [error/code = 300]
+todo: [print [&quot;catch&quot; lf error] 1]
+a: try-catch command cond todo
+print a = 1
+</code></pre></div><h1 id="red中异常处理的最佳实践"><a href="#red中异常处理的最佳实践" class="header-anchor">#</a> Red中异常处理的最佳实践</h1> <h2 id="每个context中提供一个自定义异常"><a href="#每个context中提供一个自定义异常" class="header-anchor">#</a> 每个context中提供一个自定义异常</h2> <div class="language- extra-class"><pre class="language-text"><code>ctx-a: context [
+
+	system/catalog/errors/user: make system/catalog/errors/user [ctx-a: [&quot;ctx-a [&quot; :arg1 &quot;: (&quot; :arg2 &quot; &quot; :arg3 &quot;)]&quot;]]
+
+	new-error: func [name [word!] arg2 arg3][
+		cause-error 'user 'ctx-a [name arg2 arg3]
+	]
+
+	func-a: func [][
+		new-error 'func-a &quot;msg1&quot; &quot;msg2&quot;
+	]
+]
+</code></pre></div><h2 id="由上层模块捕获异常"><a href="#由上层模块捕获异常" class="header-anchor">#</a> 由上层模块捕获异常</h2> <!----></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#抛出异常" title="抛出异常">抛出异常</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#捕获异常" title="捕获异常">捕获异常</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#通过make-error-创建异常" title="通过make error!创建异常">通过make error!创建异常</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#使用cause-error创建异常" title="使用cause-error创建异常">使用cause-error创建异常</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#make-error-还不能带参数-arg1-arg2-arg3" title="make error!还不能带参数(arg1/arg2/arg3)">make error!还不能带参数(arg1/arg2/arg3)</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#不能捕获特定的异常" title="不能捕获特定的异常">不能捕获特定的异常</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#每个context中提供一个自定义异常" title="每个context中提供一个自定义异常">每个context中提供一个自定义异常</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#由上层模块捕获异常" title="由上层模块捕获异常">由上层模块捕获异常</a></div></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8><li class="contact-item" data-v-3d9deeb8><a href="https://github.com/bitbegin" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github" data-v-3d9deeb8><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-v-3d9deeb8></path></svg>
+          
+        </a></li></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8><li class="copyright-item" data-v-3d9deeb8>MIT</li></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6d905af9.js" defer></script><script src="/assets/js/6.d9aefc5c.js" defer></script><script src="/assets/js/3.f75f8ea8.js" defer></script><script src="/assets/js/21.525d2128.js" defer></script>
+  </body>
+</html>

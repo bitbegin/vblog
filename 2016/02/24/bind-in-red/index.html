@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Red的bind操作 | bitbegin</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="
+Red中的bind函数是个比较有意思的东西，刚接触时一直没有看懂这是个什么玩意，不信你看：
+`
+code: [a + b]
+add: function [a b] [
+    b: 12
+    do bind code &#39;a
+]
+print add 34 10
+` ...">
+    
+    <link rel="preload" href="/assets/css/0.styles.c02f74ab.css" as="style"><link rel="preload" href="/assets/js/app.6d905af9.js" as="script"><link rel="preload" href="/assets/js/6.d9aefc5c.js" as="script"><link rel="preload" href="/assets/js/3.f75f8ea8.js" as="script"><link rel="preload" href="/assets/js/20.e97103cd.js" as="script"><link rel="prefetch" href="/assets/js/10.c49783db.js"><link rel="prefetch" href="/assets/js/11.27f8fb72.js"><link rel="prefetch" href="/assets/js/12.5ccc3682.js"><link rel="prefetch" href="/assets/js/13.13772e37.js"><link rel="prefetch" href="/assets/js/14.d5fdf6c6.js"><link rel="prefetch" href="/assets/js/15.64f91135.js"><link rel="prefetch" href="/assets/js/16.aeeb3645.js"><link rel="prefetch" href="/assets/js/17.be4c4988.js"><link rel="prefetch" href="/assets/js/18.36c5f43c.js"><link rel="prefetch" href="/assets/js/19.11035ba7.js"><link rel="prefetch" href="/assets/js/21.525d2128.js"><link rel="prefetch" href="/assets/js/22.52bff9d8.js"><link rel="prefetch" href="/assets/js/23.6bc79277.js"><link rel="prefetch" href="/assets/js/24.b88a4f5d.js"><link rel="prefetch" href="/assets/js/25.efe05808.js"><link rel="prefetch" href="/assets/js/26.19480b5f.js"><link rel="prefetch" href="/assets/js/4.079edda5.js"><link rel="prefetch" href="/assets/js/5.680c2dc1.js"><link rel="prefetch" href="/assets/js/7.c3bc74f6.js"><link rel="prefetch" href="/assets/js/8.42adc483.js"><link rel="prefetch" href="/assets/js/9.9c0f34d3.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.1cfd2050.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c02f74ab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" class="nav-link home-link">bitbegin </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/" class="nav-link mobile-home-link">bitbegin </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        Red的bind操作
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">bitbegin</span> <span itemprop="address">   in wuhan</span></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2016-02-24 22:23">
+      Wed Feb 24 2016
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/tag/Red" data-v-42ccfcd5><span data-v-42ccfcd5>Red</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/Red/System" data-v-42ccfcd5><span data-v-42ccfcd5>Red/System</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/Rebol" data-v-42ccfcd5><span data-v-42ccfcd5>Rebol</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h2 id="red的bind函数"><a href="#red的bind函数" class="header-anchor">#</a> Red的bind函数</h2> <p><img src="/2016-02-24-bind-in-red/bind.gif" alt=""></p> <p><code>Red</code>中的<code>bind</code>函数是个比较有意思的东西，刚接触时一直没有看懂这是个什么玩意，不信你看：</p> <div class="language- extra-class"><pre class="language-text"><code>code: [a + b]
+add: function [a b] [
+    b: 12
+    do bind code 'a
+]
+print add 34 10
+</code></pre></div><p>输出结果<code>46</code>。</p> <p>起初看这段代码是一头雾水的，但是经过研究发现是这么回事：</p> <p><code>bind</code>的第一个参数为<code>block</code>，里面的符号可以重新绑定，第二个参数为绑定的上下文，分为两种情况。</p> <ul><li>符号<code>'symbol</code>：使用该符号<code>symbol</code>的上下文，告诉第一个参数<code>block</code>去哪个上下文绑定</li> <li><code>context</code>: 使用<code>context</code>定义的上下文</li></ul> <p>我们再来看上面的例子：
+<code>add 34 10</code> 后局部变量 状态<code>a = 34</code> <code>b = 10</code>，继续执行<code>b: 12</code>，局部变量状态变为<code>a = 34</code> <code>b = 12</code>，<code>bind code 'a</code>后，code中的<code>a</code>和<code>b</code>绑定到局部变量，而do会对block求值，所以返回<code>46</code></p> <h3 id="第二个参数为符号-symbol的例子"><a href="#第二个参数为符号-symbol的例子" class="header-anchor">#</a> 第二个参数为符号<code>'symbol</code>的例子</h3> <p>一个递归调用的例子</p> <div class="language- extra-class"><pre class="language-text"><code>Red []
+foreach-leaf: func [word [word!] spec [block!] body [block!]][
+    &quot;Depth-first tree of blocks traversal iterator&quot;
+    bind body 'spec
+    while [not tail? spec][
+        either block? spec/1 [
+            foreach-leaf word spec/1 body
+        ][
+            set word spec/1
+            do body
+        ]
+        spec: next spec
+    ]
+]
+
+total: 0
+foreach-leaf 'i [1 2 [3 [4 5] 6] 7 [8]] [total: total + i]
+?? total
+</code></pre></div><h3 id="第二个参数为context的例子"><a href="#第二个参数为context的例子" class="header-anchor">#</a> 第二个参数为<code>context</code>的例子</h3> <div class="language- extra-class"><pre class="language-text"><code>ctx: context [a: 1 b: 2]
+do bind [a + b] ctx
+</code></pre></div><p>有关<code>bind</code>用法的更为详细的解释看 <a href="http://www.pat665.free.fr/doc/bind.html" target="_blank" rel="noopener noreferrer">这里<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <!----></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#red的bind函数" title="Red的bind函数">Red的bind函数</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#第二个参数为符号-symbol的例子" title="第二个参数为符号'symbol的例子">第二个参数为符号'symbol的例子</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#第二个参数为context的例子" title="第二个参数为context的例子">第二个参数为context的例子</a></div></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8><li class="contact-item" data-v-3d9deeb8><a href="https://github.com/bitbegin" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github" data-v-3d9deeb8><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-v-3d9deeb8></path></svg>
+          
+        </a></li></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8><li class="copyright-item" data-v-3d9deeb8>MIT</li></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6d905af9.js" defer></script><script src="/assets/js/6.d9aefc5c.js" defer></script><script src="/assets/js/3.f75f8ea8.js" defer></script><script src="/assets/js/20.e97103cd.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Red语言学习系列（3） | bitbegin</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="
+目前还没有Red语法的详细文档，但是因为Red跟Rebol语法基本相似，所以可以参考Rebol的语法。
+Red&#39;s Hello World!
+    Red []
+    print &quot;Hello World!&quot;
+    print &quot;世界你好！&quot; ...">
+    
+    <link rel="preload" href="/assets/css/0.styles.c02f74ab.css" as="style"><link rel="preload" href="/assets/js/app.6d905af9.js" as="script"><link rel="preload" href="/assets/js/6.d9aefc5c.js" as="script"><link rel="preload" href="/assets/js/3.f75f8ea8.js" as="script"><link rel="preload" href="/assets/js/18.36c5f43c.js" as="script"><link rel="prefetch" href="/assets/js/10.c49783db.js"><link rel="prefetch" href="/assets/js/11.27f8fb72.js"><link rel="prefetch" href="/assets/js/12.5ccc3682.js"><link rel="prefetch" href="/assets/js/13.13772e37.js"><link rel="prefetch" href="/assets/js/14.d5fdf6c6.js"><link rel="prefetch" href="/assets/js/15.64f91135.js"><link rel="prefetch" href="/assets/js/16.aeeb3645.js"><link rel="prefetch" href="/assets/js/17.be4c4988.js"><link rel="prefetch" href="/assets/js/19.11035ba7.js"><link rel="prefetch" href="/assets/js/20.e97103cd.js"><link rel="prefetch" href="/assets/js/21.525d2128.js"><link rel="prefetch" href="/assets/js/22.52bff9d8.js"><link rel="prefetch" href="/assets/js/23.6bc79277.js"><link rel="prefetch" href="/assets/js/24.b88a4f5d.js"><link rel="prefetch" href="/assets/js/25.efe05808.js"><link rel="prefetch" href="/assets/js/26.19480b5f.js"><link rel="prefetch" href="/assets/js/4.079edda5.js"><link rel="prefetch" href="/assets/js/5.680c2dc1.js"><link rel="prefetch" href="/assets/js/7.c3bc74f6.js"><link rel="prefetch" href="/assets/js/8.42adc483.js"><link rel="prefetch" href="/assets/js/9.9c0f34d3.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.1cfd2050.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c02f74ab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" class="nav-link home-link">bitbegin </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/" class="nav-link mobile-home-link">bitbegin </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        Red语言学习系列（3）
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">bitbegin</span> <span itemprop="address">   in wuhan</span></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2015-02-19 17:44">
+      Thu Feb 19 2015
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/tag/Red" data-v-42ccfcd5><span data-v-42ccfcd5>Red</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/Red/System" data-v-42ccfcd5><span data-v-42ccfcd5>Red/System</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/Rebol" data-v-42ccfcd5><span data-v-42ccfcd5>Rebol</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h2 id="red语法"><a href="#red语法" class="header-anchor">#</a> Red语法</h2> <p>目前还没有<code>Red</code>语法的详细文档，但是因为<code>Red</code>跟<code>Rebol</code>语法基本相似，所以可以参考<code>Rebol</code>的语法。</p> <p><img src="/2015-02-19-red-study-3/mac-red030.png" alt=""></p> <h3 id="red-s-hello-world"><a href="#red-s-hello-world" class="header-anchor">#</a> Red's Hello World!</h3> <div class="language- extra-class"><pre><code>Red []
+print &quot;Hello World!&quot;
+print &quot;世界你好！&quot;
+</code></pre></div><p>相比<code>Rebol</code>，<code>Red</code>是天生支持<code>Unicode</code>的，对于非英语系来说，这是个福音。恋上<code>Red</code>，支持<code>Unicode</code>是一个原因，另外一个就是这家伙的<code>GUI</code>要做成naive的。以前鼓捣了一下<code>Rebol</code>的<code>View</code>也是蛮有意思的，就是界面有点<code>Ugly</code>。</p> <h3 id="red内部使用red-system代码"><a href="#red内部使用red-system代码" class="header-anchor">#</a> Red内部使用Red/System代码</h3> <p>有两种方法可以实现<code>Red</code>调用<code>Red/System</code></p> <h4 id="内嵌方法-system-global"><a href="#内嵌方法-system-global" class="header-anchor">#</a> 内嵌方法<code>#system-global</code></h4> <p>这种方法类似在C中插入ASM代码</p> <div class="language- extra-class"><pre><code>`#system-global` [
+        print &quot;Here you can use Red/System syntax&quot;
+]
+</code></pre></div><h4 id="routine方法"><a href="#routine方法" class="header-anchor">#</a> routine方法</h4> <p>上面的方面只是插入了<code>Red/System</code>代码块，如果需要调用函数，需要使用<code>routine</code>方法。</p> <div class="language- extra-class"><pre><code>increment: routine [
+    n       [integer!]
+    return: [integer!]
+][
+    n + 1
+]
+</code></pre></div><p>在<code>routine</code>中可以方便使用<code>Red/System</code>语法：</p> <div class="language- extra-class"><pre class="language-text"><code>Red[
+        Title:  &quot;hello&quot;
+        Author: &quot;jocko&quot;
+        File:   %hello-2.red
+]
+; --- lib imports -----
+#system[
+    #import [
+        &quot;user32.dll&quot; stdcall [
+            MessageBox: &quot;MessageBoxA&quot; [
+                handle      [integer!] 
+                text        [c-string!] 
+                title       [c-string!]
+                type        [integer!]
+            return: [integer!]
+            ]
+        ]
+    ]
+]
+
+; note the conversion from string to c-string : 
+; as c-string! string/rs-head txt
+
+alert: routine [
+            txt [string!] 
+            return: [integer!]][
+        MessageBox 0 as c-string! string/rs-head txt &quot;alert&quot; 48 
+]
+
+confirm: routine [
+            txt [string!] 
+            return: [integer!] 
+            /local rep [integer!]][
+        rep: MessageBox 0 as c-string! string/rs-head txt &quot;confirm&quot; 4 
+        if rep = 6 [rep: 1]  ; otherwise rep = 7
+        rep
+]
+
+rep: 0
+
+until [
+    alert &quot;hello, red world !&quot;
+    rep: confirm &quot;quit ?&quot;    
+    rep = 1
+] 
+</code></pre></div><h2 id="red-roadmap"><a href="#red-roadmap" class="header-anchor">#</a> Red Roadmap</h2> <ul><li>0.5.1 New console</li> <li>0.5.2 New Android toolchain</li> <li>0.5.3 Redbin</li> <li>0.6.0 GUI support</li> <li>0.7.0 I/O support</li> <li>0.8.0 Cuncurrency support</li> <li>0.8.5 Modules</li> <li>0.9.0 Garbage collector (first beta)</li> <li>1.0.0 First stable release</li></ul> <p>到0.7.0版本发布时，就可以比较happy的使用了。</p> <!----></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#red语法" title="Red语法">Red语法</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#red-s-hello-world" title="Red's Hello World!">Red's Hello World!</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#red内部使用red-system代码" title="Red内部使用Red/System代码">Red内部使用Red/System代码</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#red-roadmap" title="Red Roadmap">Red Roadmap</a></div></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8><li class="contact-item" data-v-3d9deeb8><a href="https://github.com/bitbegin" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github" data-v-3d9deeb8><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-v-3d9deeb8></path></svg>
+          
+        </a></li></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8><li class="copyright-item" data-v-3d9deeb8>MIT</li></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6d905af9.js" defer></script><script src="/assets/js/6.d9aefc5c.js" defer></script><script src="/assets/js/3.f75f8ea8.js" defer></script><script src="/assets/js/18.36c5f43c.js" defer></script>
+  </body>
+</html>

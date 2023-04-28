@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>比特币交易数据解析系列（2）- 隔离见证交易数据结构解析实例 | bitbegin</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="要解析的交易id： fc2344f6c98cc19e5b3d7b716f9eaaeb21ab781393731652c710afd07a5505bf
+原始数据内容参考：
+https://tchain.btc.com/fc2344f6c98cc19e5b3d7b716f9eaaeb21ab781393731652c710afd07a5505bf.rawhex
+原始数据内容:
+` ...">
+    
+    <link rel="preload" href="/assets/css/0.styles.c02f74ab.css" as="style"><link rel="preload" href="/assets/js/app.6d905af9.js" as="script"><link rel="preload" href="/assets/js/6.d9aefc5c.js" as="script"><link rel="preload" href="/assets/js/3.f75f8ea8.js" as="script"><link rel="preload" href="/assets/js/23.6bc79277.js" as="script"><link rel="prefetch" href="/assets/js/10.c49783db.js"><link rel="prefetch" href="/assets/js/11.27f8fb72.js"><link rel="prefetch" href="/assets/js/12.5ccc3682.js"><link rel="prefetch" href="/assets/js/13.13772e37.js"><link rel="prefetch" href="/assets/js/14.d5fdf6c6.js"><link rel="prefetch" href="/assets/js/15.64f91135.js"><link rel="prefetch" href="/assets/js/16.aeeb3645.js"><link rel="prefetch" href="/assets/js/17.be4c4988.js"><link rel="prefetch" href="/assets/js/18.36c5f43c.js"><link rel="prefetch" href="/assets/js/19.11035ba7.js"><link rel="prefetch" href="/assets/js/20.e97103cd.js"><link rel="prefetch" href="/assets/js/21.525d2128.js"><link rel="prefetch" href="/assets/js/22.52bff9d8.js"><link rel="prefetch" href="/assets/js/24.b88a4f5d.js"><link rel="prefetch" href="/assets/js/25.efe05808.js"><link rel="prefetch" href="/assets/js/26.19480b5f.js"><link rel="prefetch" href="/assets/js/4.079edda5.js"><link rel="prefetch" href="/assets/js/5.680c2dc1.js"><link rel="prefetch" href="/assets/js/7.c3bc74f6.js"><link rel="prefetch" href="/assets/js/8.42adc483.js"><link rel="prefetch" href="/assets/js/9.9c0f34d3.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.1cfd2050.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c02f74ab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" class="nav-link home-link">bitbegin </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/" class="nav-link mobile-home-link">bitbegin </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        比特币交易数据解析系列（2）- 隔离见证交易数据结构解析实例
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">bitbegin</span> <span itemprop="address">   in wuhan</span></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2018-08-15T18:00:00.000Z">
+      Wed Aug 15 2018
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/tag/BTC" data-v-42ccfcd5><span data-v-42ccfcd5>BTC</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/bitcoin" data-v-42ccfcd5><span data-v-42ccfcd5>bitcoin</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/segregated-witness" data-v-42ccfcd5><span data-v-42ccfcd5>segregated-witness</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/transaction" data-v-42ccfcd5><span data-v-42ccfcd5>transaction</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><p>要解析的交易id： <code>fc2344f6c98cc19e5b3d7b716f9eaaeb21ab781393731652c710afd07a5505bf</code>
+原始数据内容参考：
+<code>https://tchain.btc.com/fc2344f6c98cc19e5b3d7b716f9eaaeb21ab781393731652c710afd07a5505bf.rawhex</code>
+原始数据内容:</p> <div class="language- extra-class"><pre class="language-text"><code>01000000000103373d0980f9293fc5864c02fa7946ab706a1f0a5c5aedb8ee3a7eaf4d17c65e5e010000001716001483257fc24165625e80b722a468b387ad8008976dffffff00df618d78879c213bde156e3ee55d1abe1badf750828aa0587d4a6d7fd2a41df7000000001716001461fd4f0351b7c446128c320764d59d94f9274d8bffffff00df618d78879c213bde156e3ee55d1abe1badf750828aa0587d4a6d7fd2a41df70100000017160014401fc654bf702e0bb991d8957e3b1ea3374a4f09ffffff00020084d7170000000017a9145be3eb3165f9c7ad58d3f49dc7f253ac42499eef87ebd4f2030000000017a91481dd877be5b3b60e3b1ccf547785744345570b938702483045022100b8d1e7a9453f09a0aff9288533bb6c32fcb83edee4545853dd44f9af1d4acc20022013d7a5f84ec7db69b416f7f8a863b0c98a8ad03496275bee057da26008c50ccf012103c77bad126773776975e6ee131bea89f77e212c44537cb9cc4115b201fe4e2e1302483045022100d41a793fdb4852db93a0b7f2002c0e17fbb5fd7bac8d31b00b320681c08c2c2e022000a0eb06c9f649dafb1c6ee6214aa2ac2f7422f8567947c73d8245058c9dacb8012102e2ed7b46d33f5cf691ae52dccb8dd3e06f03c0b16b4f72728df90acefcbf0cba02473044022018e2b4924e2545feb79217d48ed89fa91f60d9f11f5570332244ff9918e6cebe022078d3aa0534f448a5ed6e547f44fbd3c67305c4e01ab460225509dcdea094648c012102426b7cdb586c1d0d0909967b2d06fe4ee8289e61c7ab9ca360d5fcddd9641a3600000000
+</code></pre></div><h1 id="整体解析过程"><a href="#整体解析过程" class="header-anchor">#</a> 整体解析过程</h1> <div class="language- extra-class"><pre class="language-text"><code>
+01000000																;version
+0001																	;witness flag
+
+03																		;tx_in count
+373d0980f9293fc5864c02fa7946ab706a1f0a5c5aedb8ee3a7eaf4d17c65e5e		;unspend txid
+01000000																;unspend txid's output index
+17																		;scriptSig length
+16																		;PUSHDATA
+001483257fc24165625e80b722a468b387ad8008976d							;P2SH(pubkey-hash)
+ffffff00																;sequence
+df618d78879c213bde156e3ee55d1abe1badf750828aa0587d4a6d7fd2a41df7		;unspend txid
+00000000																;unspend txid's output index
+17																		;scriptSig length
+16																		;PUSHDATA
+001461fd4f0351b7c446128c320764d59d94f9274d8b							;P2SH(pubkey-hash)
+ffffff00																;sequence
+df618d78879c213bde156e3ee55d1abe1badf750828aa0587d4a6d7fd2a41df7		;unspend txid
+01000000																;unspend txid's output index
+17																		;scriptSig length
+16																		;PUSHDATA
+0014401fc654bf702e0bb991d8957e3b1ea3374a4f09							;P2SH(pubkey-hash)
+ffffff00																;sequence
+
+02																		;tx_out count
+0084d71700000000														;tx_out 1: value
+17																		;pk_script length
+a9145be3eb3165f9c7ad58d3f49dc7f253ac42499eef87							;pk_script
+ebd4f20300000000														;tx_out 2: value
+17																		;pk_script length
+a91481dd877be5b3b60e3b1ccf547785744345570b9387							;pk_script
+
+
+02																		;tx_in 1: item count
+48																		;item 1: length
+3045022100b8d1e7a9453f09a0aff9288533bb6c32fcb83edee4545853dd44f9af1d4acc20022013d7a5f84ec7db69b416f7f8a863b0c98a8ad03496275bee057da26008c50ccf01	;item 1: content
+21																		;item 2: length
+03c77bad126773776975e6ee131bea89f77e212c44537cb9cc4115b201fe4e2e13		;item 2: content
+02																		;tx_in 2: item count
+48																		;item 1: length
+3045022100d41a793fdb4852db93a0b7f2002c0e17fbb5fd7bac8d31b00b320681c08c2c2e022000a0eb06c9f649dafb1c6ee6214aa2ac2f7422f8567947c73d8245058c9dacb801	;item 1: content
+21																		;item 2: length
+02e2ed7b46d33f5cf691ae52dccb8dd3e06f03c0b16b4f72728df90acefcbf0cba		;item 2: content
+02																		;tx_in 3: item count
+47																		;item 1: length
+3044022018e2b4924e2545feb79217d48ed89fa91f60d9f11f5570332244ff9918e6cebe022078d3aa0534f448a5ed6e547f44fbd3c67305c4e01ab460225509dcdea094648c01		;item 1: content
+21																		;item 2: length
+02426b7cdb586c1d0d0909967b2d06fe4ee8289e61c7ab9ca360d5fcddd9641a36		;item 2: content
+00000000																;locktime
+</code></pre></div><h1 id="输入脚本解析"><a href="#输入脚本解析" class="header-anchor">#</a> 输入脚本解析：</h1> <div class="language- extra-class"><pre class="language-text"><code>17																		            ;scriptSig length
+16																		            ;PUSHDATA
+0014                                                                                 ;P2SH header
+83257fc24165625e80b722a468b387ad8008976d		;pubkey-hash
+</code></pre></div><h1 id="witness-签名脚本"><a href="#witness-签名脚本" class="header-anchor">#</a> witness 签名脚本</h1> <h2 id="签名数据"><a href="#签名数据" class="header-anchor">#</a> 签名数据</h2> <div class="language- extra-class"><pre class="language-text"><code>48 3045022100b8d1e7a9453f09a0aff9288533bb6c32fcb83edee4545853dd44f9af1d4acc20022013d7a5f84ec7db69b416f7f8a863b0c98a8ad03496275bee057da26008c50ccf01
+</code></pre></div><p>解析：</p> <div class="language- extra-class"><pre class="language-text"><code>48								;length
+30								;DER start
+45								;DER length
+&gt;&gt;&gt; DER start
+02								;?
+21								;R length
+00b8d1e7a9453f09a0aff9288533bb6c32fcb83edee4545853dd44f9af1d4acc20		;R
+02								;?
+20								;S length
+13d7a5f84ec7db69b416f7f8a863b0c98a8ad03496275bee057da26008c50ccf		;S
+&gt;&gt;&gt; DER end
+01
+</code></pre></div><h2 id="签名-公钥脚本"><a href="#签名-公钥脚本" class="header-anchor">#</a> 签名 公钥脚本：</h2> <div class="language- extra-class"><pre class="language-text"><code>21								;pubkey length
+03c77bad126773776975e6ee131bea89f77e212c44537cb9cc4115b201fe4e2e13		;pubkey
+</code></pre></div><h1 id="输入脚本pubkey-hash-与见证数据公钥-关系"><a href="#输入脚本pubkey-hash-与见证数据公钥-关系" class="header-anchor">#</a> 输入脚本pubkey-hash 与见证数据公钥 关系</h1> <div class="language- extra-class"><pre class="language-text"><code>pubkey-hash = hash160(pubkey)
+</code></pre></div><!----></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#签名数据" title="签名数据">签名数据</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#签名-公钥脚本" title="签名 公钥脚本：">签名 公钥脚本：</a></div></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8><li class="contact-item" data-v-3d9deeb8><a href="https://github.com/bitbegin" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github" data-v-3d9deeb8><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-v-3d9deeb8></path></svg>
+          
+        </a></li></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8><li class="copyright-item" data-v-3d9deeb8>MIT</li></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6d905af9.js" defer></script><script src="/assets/js/6.d9aefc5c.js" defer></script><script src="/assets/js/3.f75f8ea8.js" defer></script><script src="/assets/js/23.6bc79277.js" defer></script>
+  </body>
+</html>

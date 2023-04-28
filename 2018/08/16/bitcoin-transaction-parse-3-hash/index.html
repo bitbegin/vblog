@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>比特币交易数据解析系列（3）- 隔离见证交易hash | bitbegin</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="隔离见证hash算法文档： https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki
+数据组成
+公钥
+未压缩公钥：04 + X(32B) + Y(32B)
+隔离见证需要的公钥为：03 + X(32B) 或者 02 + Y(32B)
+hash算法
+double ...">
+    
+    <link rel="preload" href="/assets/css/0.styles.c02f74ab.css" as="style"><link rel="preload" href="/assets/js/app.6d905af9.js" as="script"><link rel="preload" href="/assets/js/6.d9aefc5c.js" as="script"><link rel="preload" href="/assets/js/3.f75f8ea8.js" as="script"><link rel="preload" href="/assets/js/24.b88a4f5d.js" as="script"><link rel="prefetch" href="/assets/js/10.c49783db.js"><link rel="prefetch" href="/assets/js/11.27f8fb72.js"><link rel="prefetch" href="/assets/js/12.5ccc3682.js"><link rel="prefetch" href="/assets/js/13.13772e37.js"><link rel="prefetch" href="/assets/js/14.d5fdf6c6.js"><link rel="prefetch" href="/assets/js/15.64f91135.js"><link rel="prefetch" href="/assets/js/16.aeeb3645.js"><link rel="prefetch" href="/assets/js/17.be4c4988.js"><link rel="prefetch" href="/assets/js/18.36c5f43c.js"><link rel="prefetch" href="/assets/js/19.11035ba7.js"><link rel="prefetch" href="/assets/js/20.e97103cd.js"><link rel="prefetch" href="/assets/js/21.525d2128.js"><link rel="prefetch" href="/assets/js/22.52bff9d8.js"><link rel="prefetch" href="/assets/js/23.6bc79277.js"><link rel="prefetch" href="/assets/js/25.efe05808.js"><link rel="prefetch" href="/assets/js/26.19480b5f.js"><link rel="prefetch" href="/assets/js/4.079edda5.js"><link rel="prefetch" href="/assets/js/5.680c2dc1.js"><link rel="prefetch" href="/assets/js/7.c3bc74f6.js"><link rel="prefetch" href="/assets/js/8.42adc483.js"><link rel="prefetch" href="/assets/js/9.9c0f34d3.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.1cfd2050.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c02f74ab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" class="nav-link home-link">bitbegin </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/" class="nav-link mobile-home-link">bitbegin </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        比特币交易数据解析系列（3）- 隔离见证交易hash
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">bitbegin</span> <span itemprop="address">   in wuhan</span></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2018-08-16T21:00:00.000Z">
+      Thu Aug 16 2018
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/tag/BTC" data-v-42ccfcd5><span data-v-42ccfcd5>BTC</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/bitcoin" data-v-42ccfcd5><span data-v-42ccfcd5>bitcoin</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/segregated-witness" data-v-42ccfcd5><span data-v-42ccfcd5>segregated-witness</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/transaction" data-v-42ccfcd5><span data-v-42ccfcd5>transaction</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><p>隔离见证hash算法文档： <code>https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki</code></p> <h1 id="数据组成"><a href="#数据组成" class="header-anchor">#</a> 数据组成</h1> <h2 id="公钥"><a href="#公钥" class="header-anchor">#</a> 公钥</h2> <p>未压缩公钥：<code>04 + X(32B) + Y(32B)</code>
+隔离见证需要的公钥为：<code>03 + X(32B)</code>或者 <code>02 + Y(32B)</code></p> <h2 id="hash算法"><a href="#hash算法" class="header-anchor">#</a> hash算法</h2> <h3 id="double-sha256-dsha256"><a href="#double-sha256-dsha256" class="header-anchor">#</a> double sha256 (dSHA256)</h3> <ul><li>tx id
+id = sha256(sha256(data)) = dSHA256(data)
+长度为32字节</li> <li>address checksum</li></ul> <h3 id="hash160"><a href="#hash160" class="header-anchor">#</a> hash160</h3> <p>hash160(data) = ripemd160(sha256(data))</p> <h2 id="address-pubkey-to-addr"><a href="#address-pubkey-to-addr" class="header-anchor">#</a> address (pubkey-to-addr)</h2> <blockquote><blockquote><p>prefix: https://en.bitcoin.it/wiki/List_of_address_prefixes</p></blockquote></blockquote> <h3 id="legacy-address-pubkey-to-legacy-addr"><a href="#legacy-address-pubkey-to-legacy-addr" class="header-anchor">#</a> legacy address (pubkey-to-legacy-addr)</h3> <p>pubkey-hash = hash160(pubkey)
+script-pubkey = prefix + pubkey-hash
+encode58-check(data) = encode58(data + dSHA256(data)[0..3])
+address = encode58-check(script-pubkey)</p> <h3 id="segwit-address-pubkey-to-segwit-addr"><a href="#segwit-address-pubkey-to-segwit-addr" class="header-anchor">#</a> segwit address (pubkey-to-segwit-addr)</h3> <p>pubkey-hash = hash160(pubkey)
+redeemScript = 0014 + pubkey-hash
+pubkey-to-addr(redeemScript)</p> <h1 id="hash计算过程"><a href="#hash计算过程" class="header-anchor">#</a> hash计算过程</h1> <p>要解析的交易id： <code>fc2344f6c98cc19e5b3d7b716f9eaaeb21ab781393731652c710afd07a5505bf</code>
+原始数据内容参考：
+<code>https://tchain.btc.com/fc2344f6c98cc19e5b3d7b716f9eaaeb21ab781393731652c710afd07a5505bf.rawhex</code></p> <h2 id="组装-未签名-交易数据"><a href="#组装-未签名-交易数据" class="header-anchor">#</a> 组装 未签名 交易数据</h2> <div class="language- extra-class"><pre class="language-text"><code>nVersion:      01000000
+txin:              03 373d0980f9293fc5864c02fa7946ab706a1f0a5c5aedb8ee3a7eaf4d17c65e5e 01000000 00 ffffff00
+                          df618d78879c213bde156e3ee55d1abe1badf750828aa0587d4a6d7fd2a41df7 00000000 00 ffffff00
+                          df618d78879c213bde156e3ee55d1abe1badf750828aa0587d4a6d7fd2a41df7 01000000 00 ffffff00
+txout:           02 0084d71700000000 17a9145be3eb3165f9c7ad58d3f49dc7f253ac42499eef87
+                          ebd4f20300000000 17a91481dd877be5b3b60e3b1ccf547785744345570b9387
+nLockTime: 00000000
+</code></pre></div><p>UTXO = 373d0980f9293fc5864c02fa7946ab706a1f0a5c5aedb8ee3a7eaf4d17c65e5e
+UTXO-INDEX = 01000000</p> <p>OUT-VALUE = 0084d71700000000
+OUT-SCRIPT = 17a9145be3eb3165f9c7ad58d3f49dc7f253ac42499eef87</p> <h2 id="计算hash"><a href="#计算hash" class="header-anchor">#</a> 计算hash</h2> <h3 id="计算-input-hash"><a href="#计算-input-hash" class="header-anchor">#</a> 计算 input hash</h3> <div class="language- extra-class"><pre class="language-text"><code>hashPrevouts = dSHA256([UTXO + UTXO-INDEX] * n)
+    = dSHA256(373d0980f9293fc5864c02fa7946ab706a1f0a5c5aedb8ee3a7eaf4d17c65e5e 01000000 
+                     df618d78879c213bde156e3ee55d1abe1badf750828aa0587d4a6d7fd2a41df7 00000000
+                     df618d78879c213bde156e3ee55d1abe1badf750828aa0587d4a6d7fd2a41df7  01000000)
+     = 6a59d58aabff920acf810aeca6359dbad8f0e07d9baa1dfdea7880843d44de72
+</code></pre></div><h3 id="计算-sequence-hash"><a href="#计算-sequence-hash" class="header-anchor">#</a> 计算 sequence hash</h3> <div class="language- extra-class"><pre class="language-text"><code>hashSequence = dSHA256([sequence] * n)
+    = dSHA256(01000000 00000000 01000000)
+    = 89974e58642dbbe1948159e6134c0b1f5b079893ab61cf02417f490cab69e052
+</code></pre></div><h3 id="计算-output-hash"><a href="#计算-output-hash" class="header-anchor">#</a> 计算 output hash</h3> <div class="language- extra-class"><pre class="language-text"><code>hashOutputs =  dSHA256([OUT-VALUE + OUT-SCRIPT] * n)
+    = dSHA256(0084d71700000000 17a9145be3eb3165f9c7ad58d3f49dc7f253ac42499eef87
+                         ebd4f20300000000 17a91481dd877be5b3b60e3b1ccf547785744345570b9387)
+    = 7162a64cfdd10579b3f3a33e73ae59213588794724897d6cfa18f3ccce398b7c
+</code></pre></div><h3 id="计算-hash-preimage-for-input-1"><a href="#计算-hash-preimage-for-input-1" class="header-anchor">#</a> 计算 hash preimage (for input 1)</h3> <blockquote><blockquote><p>For P2WPKH witness program, the scriptCode is 0x1976a914{20-byte-pubkey-hash}88ac</p></blockquote></blockquote> <div class="language- extra-class"><pre class="language-text"><code>hash preimage = 
+      nVersion:             01000000
+      hashPrevouts:     6a59d58aabff920acf810aeca6359dbad8f0e07d9baa1dfdea7880843d44de72
+      hashSequence:   89974e58642dbbe1948159e6134c0b1f5b079893ab61cf02417f490cab69e052
+      outpoint:             373d0980f9293fc5864c02fa7946ab706a1f0a5c5aedb8ee3a7eaf4d17c65e5e 01000000
+      scriptCode:          1976a914 {} 88ac
+      amount:               {input amount}
+      nSequence:         ffffff00
+      hashOutputs:      7162a64cfdd10579b3f3a33e73ae59213588794724897d6cfa18f3ccce398b7c
+      nLockTime:         00000000
+      nHashType:         01000000
+</code></pre></div><p>sigHash = dSHA256(hash preimage)</p> <!----></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#公钥" title="公钥">公钥</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#hash算法" title="hash算法">hash算法</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#double-sha256-dsha256" title="double sha256 (dSHA256)">double sha256 (dSHA256)</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#hash160" title="hash160">hash160</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#address-pubkey-to-addr" title="address (pubkey-to-addr)">address (pubkey-to-addr)</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#legacy-address-pubkey-to-legacy-addr" title="legacy address (pubkey-to-legacy-addr)">legacy address (pubkey-to-legacy-addr)</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#segwit-address-pubkey-to-segwit-addr" title="segwit address (pubkey-to-segwit-addr)">segwit address (pubkey-to-segwit-addr)</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#组装-未签名-交易数据" title="组装 未签名 交易数据">组装 未签名 交易数据</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#计算hash" title="计算hash">计算hash</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#计算-input-hash" title="计算 input hash">计算 input hash</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#计算-sequence-hash" title="计算 sequence hash">计算 sequence hash</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#计算-output-hash" title="计算 output hash">计算 output hash</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#计算-hash-preimage-for-input-1" title="计算 hash preimage (for input 1)">计算 hash preimage (for input 1)</a></div></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8><li class="contact-item" data-v-3d9deeb8><a href="https://github.com/bitbegin" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github" data-v-3d9deeb8><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-v-3d9deeb8></path></svg>
+          
+        </a></li></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8><li class="copyright-item" data-v-3d9deeb8>MIT</li></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6d905af9.js" defer></script><script src="/assets/js/6.d9aefc5c.js" defer></script><script src="/assets/js/3.f75f8ea8.js" defer></script><script src="/assets/js/24.b88a4f5d.js" defer></script>
+  </body>
+</html>
